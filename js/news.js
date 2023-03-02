@@ -37,7 +37,11 @@ const showNews=(newses,name)=>{
       newsContainer.innerText=''
      newses.forEach(news=>{
         console.log(news)
-        const {thumbnail_url,image_url,title,details}=news
+        const {thumbnail_url,image_url,title,details,author}=news;
+        const date=new Date(author.published_date);
+        const dateFormate=date.toDateString()
+        // console.log()
+        // const dateFormat=date.toDateString();
         const div=document.createElement('div');
         div.classList.add('card','mb-3');
         div.innerHTML=`
@@ -45,12 +49,23 @@ const showNews=(newses,name)=>{
         <div class="col-md-4">
           <img src="${image_url}" class="img-fluid rounded-start" alt="...">
         </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">${title}</h5>
-            <p class="card-text">${details.slice(0,200)}...</p>
-            
+        <div class="col-md-8 d-flex flex-column">
+          <div class="card-body ">
+           <div>
+                <h5 class="card-title">${title}</h5>
+                <p class="card-text">${details.slice(0,200)}...</p>
+           </div>
           </div>
+          <div class='ps-3 mb-3'>
+               <div class='d-flex align-items-center'>
+                    <img class='rounded-circle'width='50px'height='50px' src="${author.img}" alt="">
+               <div class=' ps-2'>
+                    <p class='p-0 m-0'>${author.name?author.name:"no author"}</p>
+                    <p class='p-0 m-0'>${dateFormate?dateFormate:"no date"}</p>
+               </div>
+               
+               </div>
+           </div>
         </div>
       </div>
         `
