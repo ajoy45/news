@@ -29,13 +29,32 @@ const showCategoryId=(id,name)=>{
     }
 }
 const showNews=(newses,name)=>{
-     console.log(newses.length,name)
+    //  console.log(newses.length,name)
 
     const inputField=document.getElementById('input');
     inputField.value=(newses.length?newses.length:'No news here')+" "+"news found category name"+" "+name;
+    const newsContainer=document.getElementById('news-container');
+      newsContainer.innerText=''
      newses.forEach(news=>{
-        
         console.log(news)
+        const {thumbnail_url,image_url,title,details}=news
+        const div=document.createElement('div');
+        div.classList.add('card','mb-3');
+        div.innerHTML=`
+        <div class="row g-0">
+        <div class="col-md-4">
+          <img src="${image_url}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">${title}</h5>
+            <p class="card-text">${details.slice(0,200)}...</p>
+            
+          </div>
+        </div>
+      </div>
+        `
+        newsContainer.appendChild(div)
      })
 }
 
