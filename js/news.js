@@ -43,7 +43,7 @@ const showNews=(newses,name)=>{
     const newsContainer=document.getElementById('news-container');
       newsContainer.innerText=''
      newses.forEach(news=>{
-        console.log(news)
+        // console.log(news)
         const {_id,rating,image_url,title,details,author,total_view}=news;
         const date=new Date(author.published_date);
         const dateFormate=date.toDateString()
@@ -148,5 +148,16 @@ const generatingRating=(rating)=>{
    }
    return ratingHTML;
 }
+// select 
+const selectItem=()=>{
+  const selectValue=document.getElementById('selection').value;
+  // console.log(selectValue)
+  // console.log(fetchData)
+  fetchData.sort((a,b)=>(b.rating.number-a.rating.number));
+  showNews(fetchData,categoryName)
+  
+}
+  
+
 
 loadCategoryName()
